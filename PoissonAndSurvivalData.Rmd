@@ -753,6 +753,7 @@ ggcoxdiagnostics(fit, type = "dfbeta",
 ```
 
 ```{r}
+##res.cox <- cox.zph(fit)
 ##ggcoxdiagnostics(res.cox, type = "deviance",
 ##                 linear.predictions = FALSE, ggtheme = theme_bw())
 ```
