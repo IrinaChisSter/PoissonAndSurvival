@@ -15,8 +15,7 @@ editor_options:
 
 ### Knitting package
 
-This is needed for filles knitting and producing html notebook style
-file.
+This is needed for files knitting and producing html notebook style file.
 
 ```{r setup, include=TRUE}
 knitr::opts_chunk$set(echo = TRUE)

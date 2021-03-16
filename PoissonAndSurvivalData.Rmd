@@ -42,7 +42,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
     -   Analyze both [***count***]{.ul} data and [***rate***]{.ul}
         outcomes by allowing us to determine which
-        explanatory/independent variables associate with
+        explanatory/independent variables they associate with
 
 ## Assumptions
 
@@ -97,6 +97,7 @@ knitr::opts_chunk$set(echo = TRUE)
 mydata<-read.table("AwardsPoissonData.txt", header=T, sep="\t")
 dim(mydata)
 names(mydata)
+head(mydata)
 ```
 
 ### Outcome summary by the categorical variable
@@ -571,6 +572,7 @@ mydata_survival<-read.table("SurvivalCancer.txt", header=T, sep="\t")
 dim(mydata_survival)
 names(mydata_survival)
 rx<-as.factor(mydata_survival$rx)
+mydata_survival
 ```
 
 #### Creating survival objects
@@ -622,7 +624,7 @@ summary with the times argument (Note the time variable in the lung data
 is actually in days, so we need to use times = 365.25)
 
 ```{r}
-summary(survfit(Surv(time, status) ~ 1, data = mydata_survival), times = 365.25)
+summary(survfit(Surv(time, status) ~ 1, data = mydata_survival), times = 700)
 ```
 
 #### Estimating median survival time
@@ -645,7 +647,7 @@ The log-rank test equally weights observations over the entire follow-up
 time and is the most common way to compare survival times between groups
 
 H0: There is no difference in survival time according to gender in the
-lung data
+colon data
 
 ```{r}
 sd <- survdiff(Surv(time, status) ~ sex, data = mydata_survival)
@@ -653,7 +655,7 @@ sd <- survdiff(Surv(time, status) ~ sex, data = mydata_survival)
 ```
 
 H0: There is no difference in survival time according to treatment in
-the lung data
+the colon data
 
 ```{r}
 sd <- survdiff(Surv(time, status) ~ rx, data = mydata_survival)
@@ -755,7 +757,7 @@ ggcoxdiagnostics(fit, type = "dfbeta",
 ```{r}
 ##res.cox <- cox.zph(fit)
 ##ggcoxdiagnostics(res.cox, type = "deviance",
-##                 linear.predictions = FALSE, ggtheme = theme_bw())
+##                linear.predictions = FALSE, ggtheme = theme_bw())
 ```
 
 #### Predictions - survival curves
